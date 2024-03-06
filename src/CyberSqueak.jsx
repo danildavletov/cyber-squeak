@@ -4,7 +4,8 @@ import cyberImg from "./assets/cyber-squeak.png"
 const phrases = [
   "Всё плохо, переделывай",
   "Супер, молодец!",
-  "Не огорчайся, у тебя всё получится!"
+  "Не огорчайся, у тебя всё получится!",
+  "Hello"
 ];
 
 const CyberSqueak = () => {
