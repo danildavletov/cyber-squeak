@@ -26,8 +26,11 @@ const CyberSqueak = () => {
     <div>
       <div className="message-div">
           {messages.map((item, i)=> {
-              return (<Message text={item} key={i}/>)
+              return (
+                  <Message key={i}>{item}</Message>
+              )
           })}
+          <button onClick={getRandomPhrase}>Проверь мой код</button>
       </div>
       <div>
         <img

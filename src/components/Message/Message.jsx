@@ -4,7 +4,7 @@ import "./Message.css"
 const Message = (props) => {
     return (
         <div className="message">
-            <p>{props.text}</p>
+            <p>{props.children || props.text}</p>
         </div>
     )
 }
