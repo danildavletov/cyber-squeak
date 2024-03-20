@@ -31,7 +31,7 @@ const CyberSqueak = () => {
   const handleSubmitResponse = () =>{
     console.log(inputRef.current);
     setMessages([
-      inputRef.current.value
+      inputRef.current.value + "(" + inputRef.current.value.length + ")"
     ])
   }
 
