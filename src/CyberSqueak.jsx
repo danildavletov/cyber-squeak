@@ -1,46 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import cyberImg from "./assets/cyber-squeak.png"
-import Message from "./components/Message/Message.jsx";
+import Message from './components/Message/Message';
+
 
 const phrases = [
   "Всё плохо, переделывай",
   "Супер, молодец!",
   "Не огорчайся, у тебя всё получится!",
-  "Попробуй ещё раз"
+  "Выкинь комп",
+  "Давай я помогу!"
 ];
 
-const messages = [
-    "Привет! Я Мышь-Помошник.",
-    "Я помогу тебе оценить твой код :)"
+const initialMessages = [
+  "Привет, я Мышь-Предсказатель!",
+  "Я помогу тебе оценить код :)"
 ]
 
+//основной элемент (мышь)
 const CyberSqueak = () => {
   const [randomPhrase, setRandomPhrase] = useState("");
+  const [messages, setMessages] = useState(initialMessages);
+  const inputRef = useRef();
 
+  //генерация рандомного ответа
   const getRandomPhrase = () => {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     setRandomPhrase(phrases[randomIndex]);
   };
 
+  const handleSubmitResponse = () =>{
+    console.log(inputRef.current);
+    setMessages([
+      inputRef.current.value
+    ])
+  }
+
+  //блок страницы
   return (
+
     <div>
-      <div className="message-div">
-          {messages.map((item, i)=> {
-              return (
-                  <Message key={i}>{item}</Message>
-              )
-          })}
-          <button onClick={getRandomPhrase}>Проверь мой код</button>
+      <div className='message-list'>
+        {messages.map((item, i) =>{
+          return(
+          <Message key={i} text="aa">{item}</Message>
+          )
+        })}
+
+        <input type="text" ref={inputRef}/>
+        <button onClick={handleSubmitResponse}>Ответить</button>
+
+        <button onClick={getRandomPhrase}>Проверь мой код</button>
       </div>
+      
       <div>
         <img
           src={cyberImg}
           alt="CyberSqueak"
-          onClick={getRandomPhrase}
-          style={{ cursor: 'pointer' }}
         />
       </div>
+      
       {randomPhrase && <p>{randomPhrase}</p>}
+      {/* {randomPhrase} */}
+
     </div>
   );
 };
