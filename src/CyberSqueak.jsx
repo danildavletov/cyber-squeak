@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import cyberImg from "./assets/cyber-squeak.png"
 import Message from './components/Message/Message';
 
@@ -13,13 +13,14 @@ const phrases = [
 
 const initialMessages = [
   "Привет, я Мышь-Предсказатель!",
-  "Я помогу тебе оценить код :)"
+  "Я помогу тебе оценить код :) Ты готов?"
 ]
 
 //основной элемент (мышь)
 const CyberSqueak = () => {
   const [randomPhrase, setRandomPhrase] = useState("");
   const [messages, setMessages] = useState(initialMessages);
+  const [haveAnswer, setHaveAnswer] = useState(false);
   const inputRef = useRef();
 
   //генерация рандомного ответа
@@ -27,13 +28,22 @@ const CyberSqueak = () => {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     setRandomPhrase(phrases[randomIndex]);
   };
-
   const handleSubmitResponse = () =>{
     console.log(inputRef.current);
     setMessages([
       inputRef.current.value + "(" + inputRef.current.value.length + ")"
     ])
+    setHaveAnswer(true);
   }
+  useEffect(()=>{
+    if(haveAnswer){
+      setMessages([
+        ...messages,
+        "Поняла, покажи тогда код!"
+      ])
+      setHaveAnswer(false);
+    }
+  }, [haveAnswer]);
 
   //блок страницы
   return (
