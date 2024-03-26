@@ -30,10 +30,6 @@ const CyberSqueak = () => {
   };
   const handleSubmitResponse = () =>{
     console.log(inputRef.current);
-HEAD
-    setMessages([
-      inputRef.current.value + "(" + inputRef.current.value.length + ")"
-    ])
     setMessages(prevMsg => {
       return [...prevMsg, inputRef.current.value];
     });
@@ -55,7 +51,7 @@ HEAD
       <div className='message-list'>
         {messages.map((item, i) =>{
           return(
-          <Message key={i} text="aa">{item}</Message>
+            <Message key={i} text={item} isUserMessage={i % 2 === 0 && i > 1} username={i % 2 === 0 && i > 1 ? "Вы" : "Кибермыш"} />
           )
         })}
 
@@ -71,10 +67,7 @@ HEAD
           alt="CyberSqueak"
         />
       </div>
-      
       {randomPhrase && <p>{randomPhrase}</p>}
-      {/* {randomPhrase} */}
-
     </div>
   );
 };
