@@ -51,7 +51,7 @@ const CyberSqueak = () => {
       <div className='message-list'>
         {messages.map((item, i) =>{
           return(
-          <Message key={i} text="aa">{item} &mdash; {item.length}</Message>
+            <Message key={i} text={item} isUserMessage={i % 2 === 0 && i > 1} username={i % 2 === 0 && i > 1 ? "Вы" : "Кибермыш"} />
           )
         })}
 
@@ -67,10 +67,7 @@ const CyberSqueak = () => {
           alt="CyberSqueak"
         />
       </div>
-      
       {randomPhrase && <p>{randomPhrase}</p>}
-      {/* {randomPhrase} */}
-
     </div>
   );
 };
