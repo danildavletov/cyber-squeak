@@ -1,10 +1,11 @@
 import React from "react";
 import "./Message.css";
 
-const Message = (props) => {
+const Message = ({text, isUserMessage, username}) => {
     return(
-        <div className='message'>
-            <p>{props.children || props.text}</p>
+        <div className={isUserMessage ? "user-message" : "program-message"}>
+            <p className="message-sender">{isUserMessage ? "You" : username}</p>
+            <p className="message-text">{text}</p>
         </div>
     )
 }
