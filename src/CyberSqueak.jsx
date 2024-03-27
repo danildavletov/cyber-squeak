@@ -51,12 +51,11 @@ const CyberSqueak = () => {
 
     <div>
       <div className='message-list'>
-        {messages.map((item, i) =>{
+      {messages.map((item, i) =>{
           return(
-          <Message key={i} text="aa">{item} &mdash; {item.length}</Message>
+            <Message key={i} text={item} isUserMessage={i % 2 === 0 && i > 1} username={i % 2 === 0 && i > 1 ? "You" : "Cyber-squeak"} />
           )
         })}
-
         <input type="text" ref={inputRef}/>
         <button onClick={handleSubmitResponse}>Ответить</button>
 
