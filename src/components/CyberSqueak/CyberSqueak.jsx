@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import cyberImg from "../../assets/cyber-squeak.png"
 import Message from '../Message/Message';
+import { getDatabase, ref, set } from "firebase/database";
 
+function writeUserData(post) {
+  const db = getDatabase();
+  set(ref(db, 'users/posts'), {
+    lastmsg: post
+  });
+}
 
 const phrases = [
   "Всё плохо, переделывай",
@@ -34,7 +41,7 @@ const CyberSqueak = () => {
     setMessages(prevMsg => {
       return [...prevMsg, {msg:inputRef.current.value, origin: "user"}];
     });
-
+    writeUserData(inputRef.current.value);
 
     setHaveAnswer(true);
   }
