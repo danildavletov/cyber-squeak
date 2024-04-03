@@ -36,12 +36,19 @@ const CyberSqueak = () => {
     setRandomPhrase(phrases[randomIndex]);
   };
 
-  const handleSubmitResponse = () =>{
+  const handleSubmitResponse = async () =>{
     console.log(inputRef.current);
     setMessages(prevMsg => {
       return [...prevMsg, {msg:inputRef.current.value, origin: "user"}];
     });
     writeUserData(inputRef.current.value);
+
+    let response = await fetch("https://api.github.com/repos/danildavletov/cyber-squeak/commits");
+    if (response.ok){
+      let commitsList = await response.json();
+      console.log(commitsList);
+      alert("Последний коммит от " + commitsList[0].commit.author.name)
+    }
 
     setHaveAnswer(true);
   }
