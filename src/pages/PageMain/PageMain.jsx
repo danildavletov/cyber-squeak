@@ -8,7 +8,8 @@ const PageMain = () => {
       <CyberSqueak />
       <Breadcrumbs>
         <Link to="/">Основная</Link>
-        <Link to="/settings">Натсройки</Link>
+        <Link to="/settings">Настройки</Link>
+        <Link to="/login">Вход</Link>
       </Breadcrumbs>
     </>
   );
