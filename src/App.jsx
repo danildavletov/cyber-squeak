@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageMain from "./pages/PageMain/PageMain";
 import PageSettings from "./pages/PageSettings/PageSettings";
 import PageLogin from "./pages/PageLogin/PageLogin";
+import AppContext from "./context/AppContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,17 +23,21 @@ function App() {
     { path: "/settings", element: <PageSettings /> },
     {
       path: "/login",
-      element: (
-        <PageLogin
-          onLogin={handleLogin}
-          onLogout={handleLogout}
-          isLoggedIn={isLoggedIn}
-        />
-      ),
+      element: <PageLogin />,
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AppContext.Provider
+      value={{
+        isLoggedIn: isLoggedIn,
+        loginHandler: handleLogin,
+        logoutHandler: handleLogout,
+      }}
+    >
+      <RouterProvider router={router} />
+    </AppContext.Provider>
+  );
 }
 
 export default App;

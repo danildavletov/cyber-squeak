@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import app from "../../../firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Breadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
+import AppContext from "../../context/AppContext";
 
 
 
@@ -11,6 +12,8 @@ const auth = getAuth(app);
 
 
 const PageLogin = (props) => {
+
+  const ctx = useContext(AppContext);
   
   const loginRef = useRef();
   const passRef = useRef();
@@ -26,7 +29,7 @@ const PageLogin = (props) => {
         const user = userCredential.user;
         console.log(user);
         // setIsLoggedIn(true);
-        props.onLogin();
+        ctx.loginHandler();
         // ...
       })
       .catch((error) => {
@@ -40,7 +43,7 @@ const PageLogin = (props) => {
   return (
     <>
       Login page
-      <p>{props.isLoggedIn && "Вы вошли"}</p>
+      <p>{ctx.isLoggedIn && "Вы вошли"}</p>
       <input type="text" ref={loginRef} placeholder="Login" />
       <input type="password" ref={passRef} placeholder="Password"/>
 
