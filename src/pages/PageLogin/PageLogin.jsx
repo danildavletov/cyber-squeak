@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 const auth = getAuth(app);
 
 
-const PageLogin = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const PageLogin = (props) => {
+  
   const loginRef = useRef();
   const passRef = useRef();
 
@@ -25,7 +25,8 @@ const PageLogin = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
+        props.onLogin();
         // ...
       })
       .catch((error) => {
@@ -39,7 +40,7 @@ const PageLogin = () => {
   return (
     <>
       Login page
-      <p>{isLoggedIn && "Вы вошли"}</p>
+      <p>{props.isLoggedIn && "Вы вошли"}</p>
       <input type="text" ref={loginRef} placeholder="Login" />
       <input type="password" ref={passRef} placeholder="Password"/>
 
@@ -48,7 +49,7 @@ const PageLogin = () => {
       <Breadcrumbs>
         <Link to="/">Основная</Link>
         <Link to="/settings">Настройки</Link>
-        <Link to="/login">Вход</Link>м
+        <Link to="/login">Вход</Link>
       </Breadcrumbs>
     </>
   );
