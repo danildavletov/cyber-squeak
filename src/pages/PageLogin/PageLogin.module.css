@@ -1,0 +1,39 @@
+.form {
+    font-size: 36px;
+    display: flex;
+    flex-direction: column;
+    width: min(80vw, 800px);
+    gap: 15px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input {
+    border: 3px solid #000;
+    font-size: 20px;
+    width: 100%;
+    background: transparent;
+    padding: 1rem;
+    border-radius: 10px;
+    outline: none;
+    transition: all .3s ease;
+}
+
+.input:focus {
+    border-bottom: 3px solid #ff0052;
+}
+
+.button {
+    font-size: 18px;
+}
+
+.hidden {
+    display: none;
+}
