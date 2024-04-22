@@ -24,3 +24,4 @@ firebase.js
 *.sln
 *.sw?
 firebase.jsx
+aiQueryData.js
